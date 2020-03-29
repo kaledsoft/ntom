@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<head>
+ <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+ <style>
+  border : 1px solid black;
+  border-collapse: collapse;
+}
+th,td {
+  padding: 2px;
+}
+</style>
+<html lang="ar" >
+<body>
+<h1>Upload Marks : </h1>
+<br>
+<div id="txtHint">Charger Votre Obsercations from Text</div>
+<form >
+<input  id="val0" value=""> </input></br>
+<input  id="val1" value=""> </input></br>
+<input type="file" accept="text/plain" id="myFile" name="filename" >
+</form> 
+<script>
+
+    var reader = new FileReader();
+        reader.onload = function(event) {
+        console.log('File content:', event.target.result);
+    };
+const input = document.querySelector('input[type="file"]')
+  input.addEventListener('change',function(e){
+  console.log(input.files )
+  const reader= new FileReader();
+  reader.onload= function(){
+	   console.log(reader.result);
+	   var tc = reader.result.split('\n');
+       //var lines = document.getElementById('textareaId').innerHTML;
+	   for(var i = 0;i < tc.length;i++){
+		document.getElementById("val0").value=tc[0];
+		document.getElementById("val1").value=tc[1];
+	    // alert("N Line:"+i +" Value :"+tc[i])	 
+	   }
+  }
+  reader.readAsText(input.files[0]);
+  document.getElementById("display").name=reader.result;
+  },false);
+
+
+</script>
+
+
+</body>
+</html>
